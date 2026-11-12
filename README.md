@@ -21,9 +21,5 @@ React 19 · Vite 8 · GSAP · ESLint
 - About section with autumn leaves background
 - Fully responsive layout
 
-## Getting Started
 
-```bash
-npm install
-npm run dev
 ```

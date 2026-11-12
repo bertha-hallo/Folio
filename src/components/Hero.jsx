@@ -96,10 +96,35 @@ export default function Hero() {
 
   return (
     <div className="hero-container" ref={heroRef}>
-      {/* Decorative ambient gradient backdrop */}
-      <div className="hero-glow" aria-hidden="true"></div>
+      <div aria-hidden="true" style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" style={{ width: "100%", height: "100%", display: "block" }}>
+          <defs>
+            <filter id="grain-fx" x="0%" y="0%" width="100%" height="100%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" result="noise" />
+              <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.15 0" in="noise" result="coloredNoise" />
+              <feComposite operator="in" in2="SourceGraphic" />
+            </filter>
+            <filter id="blob-blur" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="65" />
+            </filter>
+            <linearGradient id="ochre-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#E29452" stopOpacity="0.85" />
+              <stop offset="70%" stopColor="#C1692E" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#FBF6EE" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="terracotta-grad" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#B15629" stopOpacity="0.8" />
+              <stop offset="60%" stopColor="#D8804C" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#FBF6EE" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <path d="M-100,180 C80,120 260,300 220,520 C180,740 -60,800 -140,600 Z" fill="url(#ochre-grad)" filter="url(#blob-blur)" />
+          <path d="M1100,-80 C1300,-50 1550,60 1490,310 C1430,510 1180,450 1060,240 C980,100 930,-100 1100,-80 Z" fill="url(#terracotta-grad)" filter="url(#blob-blur)" />
+          <rect width="100%" height="100%" fill="#7c5c3d" opacity="0.14" filter="url(#grain-fx)" />
+        </svg>
+      </div>
 
-      <div className="hero-content">
+      <div className="hero-content" style={{ position: "relative", zIndex: 10 }}>
         {/* Top availability pill */}
         <div className="hero-badge">
           <span className="live-dot"></span>
